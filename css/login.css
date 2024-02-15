@@ -1,0 +1,143 @@
+/* Pagina di login */
+
+.container-login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-family: 'Poppins';
+}
+
+.sfondo-login {
+    position: absolute;
+    left: 0px;
+    background-position: center;
+    background-size: cover;
+    background: var(--sfondo-login);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 150px;
+    justify-content: center;
+}
+
+.hero-login {
+    max-width: 475px;
+    position: absolute;
+}
+
+.hero-login h3 {
+    font-size: 50px;
+    padding-bottom: 20px;
+}
+
+.hero-login p {
+    font-size: 25px;
+}
+
+.box-login {
+    background-color: white;
+    width: 600px;
+    height: 100%;
+    position: relative;
+    z-index: 3;
+    float: right;
+    padding: 80px;
+}
+
+.box-login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    height: 100%;
+    width: 100%;
+}
+
+.box-login form h2 {
+    text-align: center;
+    font-size: 35px;
+    letter-spacing: 4px;
+    padding-bottom: 10px;
+}
+
+.box-input {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+}
+
+.box-input p {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 15px;
+}
+
+.box-input p svg {
+    transform: scale(1.2);
+}
+
+.box-input input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 0.3rem;
+}
+
+.icon-pass {
+    position: absolute;
+    transform: translate(400px, 15px) scale(1.3);
+    z-index: 4;
+    cursor: pointer;
+}
+
+.box-input input:valid,
+.errore:valid {
+    border: 1px solid green !important;
+    box-shadow: green 0px 0px 3px 0px !important;
+}
+
+#loginSubmit {
+    width: 100%;
+    padding: 10px;
+    border-radius: 0.2rem;
+    border: 1px solid;
+    font-size: 20px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+#loginSubmit:hover {
+    background-color: var(--colore-primario);
+    color: aliceblue;
+    border: 1px solid black;
+}
+
+.errore {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 0.3rem;
+    border: 1px solid red !important;
+    box-shadow: red 0px 0px 3px 0px;
+}
+
+.errore-span {
+    font-size: 13px;
+    margin-top: -15px;
+    color: red;
+}
+
+#risposta span {
+    font-size: 18.5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}

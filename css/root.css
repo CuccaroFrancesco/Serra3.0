@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+
+:root
+{
+    /* Colori */
+    --colore-primario: #0d8a47;
+    --colore-secondario: #005526;
+    --colore-navbar: #1d9153c9;
+    --colore-scritte-navbar: #fff;
+    --colore-scritte-nav-dash: #000000;
+    --colore-scritte-sidebar: white;
+    --colore-ruolo-dashboard: #111111b4;
+    --colore-scritte-dato: black;
+    --colore-scritte-storico: black;
+    --colore-scritte-dati-ruolo: #00000096;
+    
+    /* Sfondi */
+    --sfondo-switch-tema: #ccc;
+    --sfondo-pallino-switch-tema: white;
+    --sfondo-login: #c9c9c9;
+    --sfondo-header: linear-gradient(rgba(20, 20, 20, 0.849), rgba(16, 16, 16, 0.664)), url(../img/header.jpg);
+    --sfondo-sidebar: #03612ddc;
+    --sfondo-sidebar-secondario: #015a29d3;
+    --sfondo-dashboard: #f1f9f2;
+    --sfondo-dato: white;
+    --sfondo-nav-dashboard: white;
+    --sfondo-storico: white;
+    --sfondo-titolo-storico: none;
+    --sfondo-intestazione: #f1f9f2;
+    
+    /* Effetti */
+    --box-shadow-storico: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    --box-shadow-dato: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    --box-shadow-hover-dato: rgba(7, 31, 1, 0.2) 0px 12px 28px 0px, rgba(1, 34, 1, 0.1) 0px 2px 4px 0px, rgba(1, 39, 9, 0.05) 0px 0px 0px 1px inset;
+    
+}
+.dark
+{
+    /* Colori */
+    --colore-primario: #0d8a47;
+    --colore-secondario: #005526;
+    --colore-navbar: #1d9153c9;
+    --colore-scritte-navbar: #fff;
+    --colore-scritte-nav-dash: #fff;
+    --colore-scritte-sidebar: white;
+    --colore-ruolo-dashboard: #ffffff96;
+    --colore-scritte-dato: white;
+    --colore-scritte-storico: white;
+    --colore-scritte-label-dati: #ffffff96;
+    
+    /* Sfondi */
+    --sfondo-switch-tema: #0d8a47;
+    --sfondo-pallino-switch-tema: #282828;
+    --sfondo-login: #c9c9c9;
+    --sfondo-header: linear-gradient(rgba(20, 20, 20, 0.849), rgba(16, 16, 16, 0.664)), url(../img/header.jpg);
+    --sfondo-sidebar: #282828;
+    --sfondo-sidebar-secondario: #1f1f1f;
+    --sfondo-dashboard: #161616;
+    --sfondo-dato: #282828;
+    --sfondo-nav-dashboard: #282828;
+    --sfondo-storico: transparent;
+    --sfondo-titolo-storico: #282828;
+    --sfondo-intestazione: none;
+    
+    /* Effetti */
+    --box-shadow-storico: rgb(8 49 17 / 25%) 0px 0px 10px 5px;
+    --box-shadow-dato: rgb(8 49 17 / 25%) 0px 0px 10px 5px;
+    --box-shadow-hover-dato: rgba(8, 49, 17, 0.027) 0px 0px 10px 5px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.wrapper ::-webkit-scrollbar
+{
+    width: 10px;
+    border-radius: 25px;
+}
+
+.wrapper ::-webkit-scrollbar-track
+{
+    background: #f1f1f1;
+}
+
+.wrapper ::-webkit-scrollbar-thumb
+{
+    background: #ddd;
+}
+
+.wrapper ::-webkit-scrollbar-thumb:hover
+{
+    background: #ccc;
+}
+
+.cambia-tema
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.switch {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--sfondo-switch-tema);
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--sfondo-pallino-switch-tema);
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+    background-color: var(--sfondo-switch-tema);
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
