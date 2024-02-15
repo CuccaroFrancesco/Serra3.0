@@ -15,6 +15,19 @@ function attivaBot()
 function cambiaTema()
 {
     document.body.classList.toggle("dark");
+    testo = document.getElementById('span-tema');
+    icona = document.getElementById('icona-tema');
+    if(testo.innerHTML=="Passa al tema scuro")
+    {
+        testo.innerHTML="Passa al tema chiaro";
+        icona.classList="svg-inline--fa fa-sun";
+    }
+    else
+    {
+        testo.innerHTML="Passa al tema scuro";
+        icona.classList="svg-inline--fa fa-moon";
+    }
+
 }
 
 function controlla()

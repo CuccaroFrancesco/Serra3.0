@@ -36,22 +36,17 @@ if(!isset($_SESSION['utente']) || !controllaRuolo('admin'))
                 <li><a href="?id=4"><i class="fa-solid fa-gear"></i><span>Impostazioni</span></a></li>
             </div>
             <div class="servizi">
-                <a href='login/logout.php'>
-                    <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
-                </a>
+                <div class="cambio-tema" onclick='cambiaTema()'><i class="fa-solid fa-moon" id='icona-tema'></i><span id='span-tema'>Passa al tema scuro</span></div>
+                <div class="logout">
+                    <a href='login/logout.php'>
+                        <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="dashboard">
             <div class="nav">
                 <div class="dash-title">Dashboard Amministratore</div>
-                <div class='cambia-tema'>
-                    Chiaro
-                    <label class="switch">
-                        <input onclick='cambiaTema()' type="checkbox" id="themeToggle"> 
-                        <span class="slider"></span>
-                    </label>
-                    Scuro
-                </div>
                 <div class="utente">
                     <div class="nome"> <?php echo $_SESSION['utente']->getNome()." ".$_SESSION['utente']->getCognome(); ?> </div>
                     <div class="ruolo"> <?php echo $_SESSION['utente']->getRuolo(); ?></div>
