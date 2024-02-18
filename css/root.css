@@ -17,6 +17,7 @@
     --colore-scritte-dato: black;
     --colore-scritte-storico: black;
     --colore-scritte-dati-ruolo: #00000096;
+    --up: rgb(0, 167, 0);
     
     /* Sfondi */
     --sfondo-switch-tema: #ccc;
@@ -50,6 +51,7 @@
     --colore-scritte-dato: white;
     --colore-scritte-storico: white;
     --colore-scritte-label-dati: #ffffff96;
+    --up: lime;
     
     /* Sfondi */
     --sfondo-switch-tema: #0d8a47;
@@ -61,8 +63,8 @@
     --sfondo-dashboard: #161616;
     --sfondo-dato: #282828;
     --sfondo-nav-dashboard: #282828;
-    --sfondo-storico: transparent;
-    --sfondo-intestazione: #282828;
+    --sfondo-storico: #282828;
+    --sfondo-intestazione: #161616;
     
     /* Effetti */
     --box-shadow-storico: rgb(8 49 17 / 25%) 0px 0px 10px 5px;

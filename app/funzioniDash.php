@@ -20,57 +20,111 @@ function stampaDati()
         dataType: 'json',
         success: function (data) 
         {
-            temp=data.primo.temp+" C°";
-            temp2=data.secondo.temp;
-            vtemp=((data.primo.temp-temp2)/temp2)*100;
-            vtemp = Math.round(vtemp);
-            if(vtemp > 0)
-            {
-                modifica = "<span class='up'><i class='fa-solid fa-arrow-up'></i> "+ vtemp + " %</span>";
-                $('#v-temp').html(modifica);
-            }
-            else
-            {
-                if(vtemp == 0)
-                {
-                    modifica = "<span class='same'><i class='fa-solid fa-arrow-down-up-across-line'></i> "+ vtemp + " %</span>";
-                    $('#v-temp').html(modifica);
-                }
-                else
-                {
-                    modifica = "<span class='down'><i class='fa-solid fa-arrow-down'></i> "+ vtemp + " %</span>";
-                    $('#v-temp').html(modifica);
-                }
-            }
-            umidita2=data.secondo.umidita;
-            umidita=data.primo.umidita+" %";
-            varia=((data.primo.umidita-umidita2)/umidita2)*100;
-            varia = Math.round(varia);
-            if(varia > 0)
-            {
-                modifica = "<span class='up'><i class='fa-solid fa-arrow-up'></i> "+ varia + " %</span>";
-                $('#v-aria').html(modifica);
-            }
-            else
-            {
-                if(varia == 0)
-                {
-                    modifica = "<span class='same'><i class='fa-solid fa-arrows-left-right'></i> "+ varia + " %</span>";
-                    $('#v-aria').html(modifica);
-                }
-                else
-                {
-                    modifica = "<span class='down'><i class='fa-solid fa-arrow-down'></i> "+ varia + " %</span>";
-                    $('#v-aria').html(modifica);
-                }
-            }
-            aria=data.primo.temp+" %";
+            temp=data.temp+" C°";
             $('#temp').html(temp);
+            umidita=data.umidita+" %";
             $('#aria').html(umidita);
-            $('#terra').html(aria);
+            terra=data.terra+" %";
+            $('#terra').html(terra);
+
+            //Valori ideali
+
+            tempIdeale=21;
+            umiditaIdeale=70;
+            terraIdeale=65;
+
+            //Variazioni temperatura
+
+            diffTemp = data.temp - tempIdeale;
+            diffTemp = Math.round(diffTemp);
+
+            var classeColore = (diffTemp > 4 || diffTemp < -4) ? 'down' : 'up';
+            var direzioneFreccia = (diffTemp > 0 ) ? 'up' : 'down';
+
+            if (diffTemp === 0) 
+            {
+                classeColore = 'up';
+                diffTemp = 'Ideale';
+                direzioneFreccia = 'fa-check';
+                modifica = "<span class='" + classeColore + "'><i class='fa-solid" + direzioneFreccia + "'></i> " + diffTemp + "</span>";
+            }
+            else
+                modifica = "<span class='" + classeColore + "'><i class='fa-solid fa-arrow-" + direzioneFreccia + "'></i> " + diffTemp + " °C</span>";
+
+            $('#v-temp').html(modifica);
+
+            //Variazioni umidità aria
+
+            diffAria = data.umidita - umiditaIdeale;
+            diffAria = Math.round(diffAria);
+
+            var classeColore = (diffAria > 10 || diffAria < -10) ? 'down' : 'up';
+            var direzioneFreccia = (diffAria > 0 ) ? 'up' : 'down';
+
+            if (diffAria === 0) 
+            {
+                classeColore = 'up';
+                diffAria = 'Ideale';
+                direzioneFreccia = 'fa-check';
+                modifica = "<span class='" + classeColore + "'><i class='fa-solid" + direzioneFreccia + "'></i> " + diffAria + "</span>";
+            }
+            else
+                modifica = "<span class='" + classeColore + "'><i class='fa-solid fa-arrow-" + direzioneFreccia + "'></i> " + diffAria + " %</span>";
+
+            $('#v-aria').html(modifica);
+
+            //Variazioni umidità terra
+
+            diffTerra = data.terra - terraIdeale;
+            diffTerra = Math.round(diffTerra);
+
+            var classeColoreTerra = (diffTerra > 5 || diffTerra < -5) ? 'down' : 'up';
+            var direzioneFrecciaTerra = (diffTerra > 0 ) ? 'up' : 'down';
+
+            if (diffTerra === 0) 
+            {
+                classeColoreTerra = 'up';
+                diffTerra = 'Ideale';
+                direzioneFrecciaTerra = 'fa-check';
+                modifica = "<span class='" + classeColoreTerra + "'><i class='fa-solid" + direzioneFrecciaTerra + "'></i> " + diffTerra + "</span>";
+            }
+            else
+                modifica = "<span class='" + classeColoreTerra + "'><i class='fa-solid fa-arrow-" + direzioneFrecciaTerra + "'></i> " + diffTerra + " %</span>";
+
+            $('#v-terra').html(modifica);
         },
     });
 }
+
+function storico() {
+    $.ajax({
+        url: 'arduino/vis.php',
+        dataType: 'json',
+        success: function (data) {
+            $('.table .corpo').empty();
+            var id = 1;
+
+            $.each(data, function (index, row) 
+            {
+                orario = row.data.split(" ");
+                var rigaHTML = '<div class="riga">' +
+                    '<div class="td">' + id + '</div>' +
+                    '<div class="td">' + orario[1] + '</div>' +
+                    '<div class="td">' + row.temp + '</div>' +
+                    '<div class="td">' + row.umidita + '</div>' +
+                    '<div class="td">' + row.terra + '</div>' +
+                    '</div>';
+                id++;
+
+                $('.table .corpo').append(rigaHTML);
+            });
+        },
+    });
+}
+
+storico();
+setInterval(storico, 1000);
+
 
 stampaDati();
 setInterval(stampaDati, 1000);
@@ -125,24 +179,9 @@ function visDati()
                             <div class='th'>Terreno</div>
                         </div>
                     </div>
-                    <?php
-                        include('app/config.php');
-                        $sql = "SELECT * FROM tabDati ORDER BY data DESC LIMIT 5";
-                        $result = $connessione->query($sql);
-                        $i=1;
-                        while($row = $result->fetch_assoc())
-                        {
-                            $giorno=explode(" ",$row['data']);
-                            echo "<div class='riga'>";
-                            echo "<div class='td'>".$i."</div>";
-                            echo "<div class='td'>".$giorno[1]."</div>";
-                            echo "<div class='td'>".$row['temp']." C°</div>";
-                            echo "<div class='td'>".$row['umidita']." %</div>";
-                            echo "<div class='td'>".$row['temp']." %</div>";
-                            echo "</div>";
-                            $i++;
-                        }
-                        ?>
+                    <div class="corpo">
+                        <div class="riga"></div>
+                    </div>
                 </div>
             </div>
         </div>

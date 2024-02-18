@@ -210,7 +210,7 @@
 }
 .destra .up
 {
-    color: green;
+    color: var(--up);
 }
 .destra .down
 {

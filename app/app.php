@@ -10,9 +10,10 @@
             .then(response => response.json())
             .then(dataFromDatabase => {
                 console.log(dataFromDatabase);
-                const temp = dataFromDatabase.primo.temp;
-                const umidita = dataFromDatabase.primo.umidita;
-                const orario = dataFromDatabase.primo.data;
+                const temp = dataFromDatabase.temp;
+                const umidita = dataFromDatabase.umidita;
+                const orario = dataFromDatabase.data;
+                const terra = dataFromDatabase.terra;
                 explode = orario.split(" ");
                 giorno = explode[0];
                 day = giorno.split("-");
@@ -43,7 +44,7 @@
                         {
                             role: 'system',
                             content: 'Il tuo nome è SerraAI <?php if(isset($_SESSION['utente'])) echo "e io mi chiamo ".$_SESSION['utente']->getNome(); ?> sei un assistente per la mia serra di pomodori. Se sei a conoscenza del mio nome, quando ti chiedo quale sia o come mi chiamo tu dovrai rispondere. Io sono il proprietario di questa serra.  Se ti ringrazio, sii felice dell essermi stato utile. Fai notare all utente quando le domande non sono inerenti alla serra o alla coltivazione. I dati si riferiscono alla serra'+
-                                'La temperatura attuale equivale a: ' + temp + '°C. La umidità attuale equivale a: '+ umidita +' %. Questi dati sono aggiornati alle: '+ ora +' del giorno '+ giorno +'.'
+                                'La temperatura attuale equivale a: ' + temp + '°C. La umidità dell aria attuale equivale a: '+ umidita +' %. La umidità della terra attualmente equivale a: '+ terra +' %.  Questi dati sono aggiornati alle: '+ ora +' del giorno '+ giorno +'. '
                         },
                         {
                             role: 'user',

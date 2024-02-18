@@ -28,12 +28,9 @@ include('app/app.php');
                 <div class='menu'>
                     <li><a href='#inizio'>Home</a></li>
                     <li><a href='#inizio'>Dettagli</a></li>
-                    <?php
-                    if(isset($_SESSION['utente']))
-                    if(controllaRuolo('admin'))
-                        echo "<li><a href='dashboard.php'>Dashboard</a></li>";
-                    else
-                        echo "<li><a>Dati</a></li>";
+                    <?php 
+                        if(controllaLogin())
+                            echo "<li><a href='dashboard.php'>Dashboard</a></li>";
                     ?>
                     <li><a href='contatti.html'>Contatti</a></li>
                     <li>
